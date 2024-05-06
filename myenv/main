@@ -1,0 +1,15 @@
+from constants import API_KEY
+from sec_api import QueryApi
+
+# Get the QueryApi
+queryApi = QueryApi(api_key=API_KEY)
+
+query = {
+    "query": {"query_string": {
+        "query": "formType:\"10-K\" AND ticker:TSLA", # only 10-Ks
+    }},
+    "from": "0", # start returning matches from position null, i.e. the first matching filing
+    "size": "1", # return just one filing
+}
+
+response = queryApi.get_filings(query)
