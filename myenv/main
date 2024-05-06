@@ -2,6 +2,7 @@ import json
 from constants import API_KEY
 from sec_api import QueryApi
 
+
 # Get the QueryApi
 queryApi = QueryApi(api_key=API_KEY)
 
