@@ -1,9 +1,10 @@
-from sec_api import QueryApi, RenderApi
+from sec_api import QueryApi, RenderApi, FullTextSearchApi
 from constants import API_KEY
 from sec_api import QueryApi
 
 renderApi = RenderApi(api_key=API_KEY)
 queryApi = QueryApi(api_key=API_KEY)
+filterApi = FullTextSearchApi(api_key=API_KEY)
 
 base_query = {
   "query": { 
@@ -21,10 +22,9 @@ base_query = {
 # open the file we use to store the filing URLs
 log_file = open("filing_urls.txt", "a")
 
-# start with filings filed in 2022, then 2020, 2019, ... up to 1995
-# uncomment next line to fetch all filings filed from 2022-1995
-# for year in range(2021, 1994, -1):
-for year in range(2022, 2020, -1):
+# start with filings filed in 2022, then 2020, 2019, ... up to 2001
+# gets all filings from 2001 - 2020
+for year in range(2022, 2001, -1):
   print("Starting download for year {year}".format(year=year))
   
   # a single search universe is represented as a month of the given year
@@ -43,10 +43,11 @@ for year in range(2022, 2020, -1):
     # until we don't find any matches anymore
     # uncomment next line to fetch all 10,000 filings
     # for from_batch in range(0, 9800, 200): 
-    for from_batch in range(0, 400, 200):
+    for from_batch in range(0, 400, 200): # Query API returns a max of 200 fillings per search
       # set new "from" starting position of search 
       base_query["from"] = from_batch;
 
+      # gets the filings from the Api
       response = queryApi.get_filings(base_query)
 
       # no more filings in search universe
@@ -69,7 +70,6 @@ for year in range(2022, 2020, -1):
 log_file.close()
 
 print("All URLs downloaded")
-
 
 # download filing and save to "filings" folder
 def download_filing(url):
@@ -113,5 +113,5 @@ def download_all_filings():
   
   print("All filings downloaded")
   
-download_all_filings()
+# download_all_filings()
   
