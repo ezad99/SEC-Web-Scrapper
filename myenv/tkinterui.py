@@ -30,6 +30,10 @@ frame.pack()
 filter_info_frame = tk.LabelFrame(frame, text="Filter Information")
 filter_info_frame.grid(row=0, column=0, padx=20, pady=20)
 
+# Get Filings Frame
+get_filing_frame = tk.LabelFrame(frame, text="Results")
+get_filing_frame.grid(row=1, column=0, padx=20, pady=20)
+
 # Saving Filter Words
 filter_words_label = tk.Label(filter_info_frame, text="Filter Words")
 filter_words_label.grid(row=0, column=0)
@@ -56,4 +60,7 @@ form_types_label.grid(row=0, column=3)
 form_types_combobox = ttk.Combobox(filter_info_frame, values=[" ","10-K", "10-KT", "10KSB"])
 form_types_combobox.grid(row=1, column=3)
 
+# Get Filings Button
+get_filings_button = tk.Button(get_filing_frame, text=f"Get Filings")
+get_filings_button.grid(row=0,column=0)
 window.mainloop()

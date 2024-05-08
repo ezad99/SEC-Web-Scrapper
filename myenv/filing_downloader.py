@@ -89,9 +89,8 @@ def download_all_filings():
   if not os.path.isdir(download_folder):
     os.makedirs(download_folder)
     
-  # uncomment next line to process all URLs
   urls = load_urls()
-  urls = load_urls()[1:40]
+#   urls = load_urls()[1:40]
   print("{length} filing URLs loaded".format(length=len(urls)))
 
   number_of_processes = 20
