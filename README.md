@@ -10,3 +10,9 @@ A Python Web Scrapper to get fillings from the SEC easily
 ` formType:("10-K", "10-KT", "10KSB", "10KSB40", "10-K405") `
 
 - The brackets tell the Query API to include a filing in the response if the form type is either 10-K, or 10-KT, or 10KSB, and so on.
+
+-The response of the Query API package in Python represents a dictionary (short: dict) with two keys: total and filings.
+
+- The value of total is a dict itself and tells us, among other things, how many filings in total match our search query. The value of filings is a list of dicts, where each dict represents all meta data of a matching filing.
+
+- We use the json Python package to pretty-print the first filing to the console to explore the structure of a filing dict.
